@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chamar Hebert</title>
+
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      font-family: Arial, sans-serif;
+      background: #f4f4f4;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .container {
+      width: 90%;
+      max-width: 500px;
+      text-align: center;
+    }
+
+    button {
+      width: 100%;
+      height: 220px;
+      font-size: 42px;
+      font-weight: bold;
+      border: none;
+      border-radius: 30px;
+      background: #007bff;
+      color: white;
+      cursor: pointer;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
+    }
+
+    button:active {
+      background: #0056b3;
+      transform: scale(0.98);
+    }
+
+    #aviso {
+      margin-top: 30px;
+      font-size: 30px;
+      color: green;
+      min-height: 40px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <button onclick="chamarHebert()">APERTE AQUI</button>
+    <div id="aviso"></div>
+  </div>
+
+  <script>
+    function chamarHebert() {
+      fetch("https://ntfy.sh/chamar-hebert-casa-83927x-bahia", {
+        method: "POST",
+        body: "Sua mãe está te chamando.",
+        headers: {
+          "Title": "Chamado em casa",
+          "Priority": "urgent",
+          "Tags": "bell"
+        }
+      })
+      .then(function() {
+        document.getElementById("aviso").innerText = "Pronto";
+      })
+      .catch(function() {
+        document.getElementById("aviso").innerText = "Erro ao chamar.";
+      });
+    }
+  </script>
+
+</body>
+</html>
